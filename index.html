@@ -232,25 +232,54 @@
   };
 
   var open = false;
-  var pos = 100;
 
   function myMove() {
-    var elem = document.getElementById("button");
+    var elemButton = document.getElementById("button");
+    var elemButtonTextBox = document.getElementById("button_text_box");
+    var elemButtonFixed = document.getElementById("button_fixed");
     frame();
     open = !open;
 
 
     function frame() {
-      if (!open){
-        elem.style.width = 300 + 'px';
-        elem.style.height = 300 + 'px';
-        pos = 300;
+      if (!open){             //auf
+        elemButton.style.width = 300 + 'px';
+        elemButton.style.height = 250 + 'px';
+        elemButton.style.marginRight = 15 + 'px';
+        elemButton.style.marginBottom = 15 + 'px';
+        elemButton.style.transitionProperty = "width, height, margin-right, margin-bottom";
+        elemButton.style.transitionDuration = "0.3s, 0.3s, 0.3s, 0.3s";
+        elemButton.style.transitionDelay = "0s, 0.2s, 0s, 0s";
+
+        elemButtonTextBox.style.marginBottom = 15 + 'px';
+        elemButtonTextBox.style.opacity = 0.8;
+        elemButtonTextBox.style.transition = "all 0.3s 0.2s";
+
+        elemButtonFixed.style.marginBottom = 40 + 'px';
+        elemButtonFixed.style.opacity = 1;
+        elemButtonFixed.style.zIndex = 901;
+        elemButtonFixed.style.visibility = "visible";
+        elemButtonFixed.style.transition = "all 0.3s 0.3s";
 
 
-      }else {
-        elem.style.width = 100 + 'px';
-        elem.style.height = 20 + 'px';
-        pos = 100;
+      }else {             //zu
+        elemButton.style.width = 100 + 'px';
+        elemButton.style.height = 20 + 'px';
+        elemButton.style.marginRight = 40 + 'px';
+        elemButton.style.marginBottom = 40 + 'px';
+        elemButton.style.transitionProperty = "width, height, margin-right, margin-bottom";
+        elemButton.style.transitionDuration = "0.3s, 0.3s, 0.3s, 0.3s";
+        elemButton.style.transitionDelay = "0.1s, 0s, 0s, 0s";
+
+        elemButtonTextBox.style.marginBottom = -240 + 'px';
+        elemButtonTextBox.style.opacity = 0;
+        elemButtonTextBox.style.transition = "all 0.3s";
+
+        elemButtonFixed.style.marginBottom = 0 + 'px';
+        elemButtonFixed.style.opacity = 0;
+        elemButtonFixed.style.zIndex = 800;
+        elemButtonFixed.style.visibility = "hidden";
+        elemButtonFixed.style.transition = "all 0.3s";
       }
     }
   }
