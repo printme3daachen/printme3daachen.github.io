@@ -235,7 +235,7 @@
     || navigator.maxTouchPoints;
   };
 
-  var open = false;
+  var isOpen = false;
   var isClickInside = true;
 
   function OpenButton() {
@@ -246,7 +246,11 @@
     document.addEventListener('click', function(event) {
       isClickInside = elemButton.contains(event.target);
 
-      if (isClickInside && !open){
+      if (isClickInside && !isOpen){
+
+        isOpen = true;
+        console.log(isOpen);
+
         elemButton.style.width = 300 + 'px';
         elemButton.style.height = 250 + 'px';
         elemButton.style.marginRight = 15 + 'px';
@@ -265,8 +269,13 @@
         elemButtonFixed.style.visibility = "visible";
         elemButtonFixed.style.transition = "all 0.3s 0.3s";
 
+        setTimeout(function(){},500);
 
       }else {
+
+        isOpen = false;
+        console.log(isOpen);
+
         elemButton.style.width = 100 + 'px';
         elemButton.style.height = 20 + 'px';
         elemButton.style.marginRight = 40 + 'px';
@@ -284,14 +293,13 @@
         elemButtonFixed.style.zIndex = 800;
         elemButtonFixed.style.visibility = "hidden";
         elemButtonFixed.style.transition = "all 0.3s";
+
+        setTimeout(function(){},500);
+
       }
 
 
     });
-
-
-
-    open = !open;
 
   }
 
