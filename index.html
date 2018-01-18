@@ -235,6 +235,7 @@
     || navigator.maxTouchPoints;
   };
 
+  var open = false;
   var isClickInside = true;
 
   function OpenButton() {
@@ -242,10 +243,10 @@
     var elemButtonTextBox = document.getElementById("button_text_box");
     var elemButtonFixed = document.getElementById("button_fixed");
 
-    document.addEventListener('mouseover', function(event) {
+    document.addEventListener('click', function(event) {
       isClickInside = elemButton.contains(event.target);
 
-      if (isClickInside){
+      if (isClickInside && !open){
         elemButton.style.width = 300 + 'px';
         elemButton.style.height = 250 + 'px';
         elemButton.style.marginRight = 15 + 'px';
@@ -285,7 +286,12 @@
         elemButtonFixed.style.transition = "all 0.3s";
       }
 
+
     });
+
+
+
+    open = !open;
 
   }
 
