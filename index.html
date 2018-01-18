@@ -24,12 +24,14 @@
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
   <meta name="msapplication-TileColor" content="#3372DF">
 
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
 </head>
 
 
 
 
-<body bgcolor="#5b5b5b">
+<body onclick="OpenButton()" bgcolor="#5b5b5b">
   <style>
   a.mdl-js-ripple-effect { position: relative; }
   .mdl-navigation__link:hover {
@@ -46,6 +48,8 @@
   }
 
 </style>
+
+
 
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
   <header class="mdl-layout__header">
@@ -218,7 +222,7 @@
 
 <link rel="stylesheet" type="text/css" href="contact.css">
 
-<div onclick="myMove()" id="button" class="mdl-js-button mdl-color--accent mdl-color-text--accent-contrast mdl-shadow--16dp">KONTAKT
+<div id="button" class="mdl-js-button mdl-color--accent mdl-color-text--accent-contrast mdl-shadow--16dp">KONTAKT
   <div id="button_text_box" class="mdl-js-button mdl-color-text--accent-contrast"> Text
   </div>
   <a href="mailto:3ddruck.aachen@gmail.com?subject=Anfrage 3D Druck&amp;body=Hallo%20Max,%0D%0A%0D%0Ahier%20steht%20die%20Nachricht." id= "button_fixed" class="mdl-js-button mdl-js-ripple-effect mdl-shadow--16dp">EMAIL</a>
@@ -231,18 +235,17 @@
     || navigator.maxTouchPoints;
   };
 
-  var open = false;
+  var isClickInside = true;
 
-  function myMove() {
+  function OpenButton() {
     var elemButton = document.getElementById("button");
     var elemButtonTextBox = document.getElementById("button_text_box");
     var elemButtonFixed = document.getElementById("button_fixed");
-    frame();
-    open = !open;
 
+    document.addEventListener('click', function(event) {
+      isClickInside = elemButton.contains(event.target);
 
-    function frame() {
-      if (!open){             //auf
+      if (isClickInside){
         elemButton.style.width = 300 + 'px';
         elemButton.style.height = 250 + 'px';
         elemButton.style.marginRight = 15 + 'px';
@@ -262,7 +265,7 @@
         elemButtonFixed.style.transition = "all 0.3s 0.3s";
 
 
-      }else {             //zu
+      }else {
         elemButton.style.width = 100 + 'px';
         elemButton.style.height = 20 + 'px';
         elemButton.style.marginRight = 40 + 'px';
@@ -281,8 +284,11 @@
         elemButtonFixed.style.visibility = "hidden";
         elemButtonFixed.style.transition = "all 0.3s";
       }
-    }
+
+    });
+
   }
+
 </script>
 
 
