@@ -31,7 +31,7 @@
 
 
 
-<body onclick="OpenButton()" bgcolor="#5b5b5b">
+<body bgcolor="#5b5b5b">
   <style>
   a.mdl-js-ripple-effect { position: relative; }
   .mdl-navigation__link:hover {
@@ -222,7 +222,7 @@
 
 <link rel="stylesheet" type="text/css" href="contact.css">
 
-<div id="button" class="mdl-js-button mdl-color--accent mdl-color-text--accent-contrast mdl-shadow--16dp">KONTAKT
+<div onclick="myMove()" id="button" class="mdl-js-button mdl-color--accent mdl-color-text--accent-contrast mdl-shadow--16dp">KONTAKT
   <div id="button_text_box" class="mdl-js-button mdl-color-text--accent-contrast"> Text
   </div>
   <a href="mailto:3ddruck.aachen@gmail.com?subject=Anfrage 3D Druck&amp;body=Hallo%20Max,%0D%0A%0D%0Ahier%20steht%20die%20Nachricht." id= "button_fixed" class="mdl-js-button mdl-js-ripple-effect mdl-shadow--16dp">EMAIL</a>
@@ -235,22 +235,18 @@
     || navigator.maxTouchPoints;
   };
 
-  var isOpen = false;
-  var isClickInside = true;
+  var open = false;
 
-  function OpenButton() {
+  function myMove() {
     var elemButton = document.getElementById("button");
     var elemButtonTextBox = document.getElementById("button_text_box");
     var elemButtonFixed = document.getElementById("button_fixed");
+    frame();
+    open = !open;
 
-    document.addEventListener('click', function(event) {
-      isClickInside = elemButton.contains(event.target);
 
-      if (isClickInside){
-
-        isOpen = true;
-        console.log(isOpen);
-
+    function frame() {
+      if (!open){             //auf
         elemButton.style.width = 300 + 'px';
         elemButton.style.height = 250 + 'px';
         elemButton.style.marginRight = 15 + 'px';
@@ -269,12 +265,6 @@
         elemButtonFixed.style.visibility = "visible";
         elemButtonFixed.style.transition = "all 0.3s 0.3s";
 
-        setTimeout(function(){},500);
-
-      }else {
-
-        isOpen = false;
-        console.log(isOpen);
 
 
       }else {             //zu
@@ -295,16 +285,9 @@
         elemButtonFixed.style.zIndex = 800;
         elemButtonFixed.style.visibility = "hidden";
         elemButtonFixed.style.transition = "all 0.3s";
-
-        setTimeout(function(){},500);
-
       }
-
-
-    });
-
+    }
   }
-
 </script>
 
 
